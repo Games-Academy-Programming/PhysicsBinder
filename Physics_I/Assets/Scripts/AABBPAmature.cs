@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AABBPAmature : MonoBehaviour
+namespace AABBNS
 {
-    public AABBHandler AABBPhysics = new AABBHandler();
-
-    void FixedUpdate()
+    public class AABBPAmature : MonoBehaviour
     {
-        AABBPhysics.Tick(Time.fixedDeltaTime);
+        public AABBHandler AABBPhysics = new AABBHandler();
+
+        void FixedUpdate()
+        {
+            AABBPhysics.Tick(Time.fixedDeltaTime);
+        }
     }
 }

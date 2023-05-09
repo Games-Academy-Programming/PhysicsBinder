@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
+using AABBNS;
 
 public class AABBTests
 {
@@ -17,16 +18,16 @@ public class AABBTests
     [TestCase(0, -.5f, ExpectedResult = true)]
     public bool AABBIntersection(float offsetX, float offsetY)
     {       
-        AABB collider1 = new AABB(0,0,1,1);
-        AABB collider2 = new AABB(offsetX, offsetY, 1, 1);
+        MyAABB collider1 = new MyAABB(0,0,1,1);
+        MyAABB collider2 = new MyAABB(offsetX, offsetY, 1, 1);
 
-        return AABB.AreOverlapping(collider1, collider2);
+        return MyAABB.AreOverlapping(collider1, collider2);
     }
 
     [Test]
     public void GetRectReturnsCorrectRepresentation()
     {
-        AABB collider = new AABB(1, 1, 2, 2);
+        MyAABB collider = new MyAABB(1, 1, 2, 2);
         Rect expectedUnityRect = new Rect(1, 1, 2, 2);
 
         Rect ColliderFromGetUnityRect = collider.GetUnityRect();
@@ -40,8 +41,8 @@ public class CollissionPointTests
     [Test]
     public void AABBIntersectionPointInCenterOfOverlappingArea()
     {
-        AABB collider1 = new AABB(0, 0, 2, 1);
-        AABB collider2 = new AABB(1, 0, 2, 1);
+        MyAABB collider1 = new MyAABB(0, 0, 2, 1);
+        MyAABB collider2 = new MyAABB(1, 0, 2, 1);
 
         AABBCollissionPoint collissionPoint = new AABBCollissionPoint(collider1, collider2);
 
@@ -56,8 +57,8 @@ public class AABBHandlerTests
     [Test]
     public void AABBHandlerFindsContactsIfCollidersOverlap()
     {
-        AABB collider1 = new AABB(0, 0, 2, 1);
-        AABB collider2 = new AABB(1, 0, 2, 1);
+        MyAABB collider1 = new MyAABB(0, 0, 2, 1);
+        MyAABB collider2 = new MyAABB(1, 0, 2, 1);
 
         AABBHandler handler = new AABBHandler();
 
@@ -74,8 +75,8 @@ public class AABBHandlerTests
     [Test]
     public void AABBHandlerClearsContactBetweenTicks()
     {
-        AABB collider1 = new AABB(0, 0, 2, 1);
-        AABB collider2 = new AABB(1, 0, 2, 1);
+        MyAABB collider1 = new MyAABB(0, 0, 2, 1);
+        MyAABB collider2 = new MyAABB(1, 0, 2, 1);
 
         AABBHandler handler = new AABBHandler();
 
@@ -92,8 +93,8 @@ public class AABBHandlerTests
     [Test]
     public void AABBHandlerFindsContactsIsNotSelfCollission()
     {
-        AABB collider1 = new AABB(0, 0, 2, 1);
-        AABB collider2 = new AABB(1, 0, 2, 1);
+        MyAABB collider1 = new MyAABB(0, 0, 2, 1);
+        MyAABB collider2 = new MyAABB(1, 0, 2, 1);
 
         AABBHandler handler = new AABBHandler();
 
@@ -110,7 +111,7 @@ public class AABBHandlerTests
     [Test]
     public void AABBHandlerSimulatesBoundingBoxAfterRegistering()
     {
-        AABB collider = new AABB(0, 0, 2, 1);
+        MyAABB collider = new MyAABB(0, 0, 2, 1);
 
         AABBHandler handler = new AABBHandler();
 

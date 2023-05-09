@@ -236,7 +236,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AABBPhysics:
-    AABBColliders: []
+    AABBColliders:
+    - offsetX: 1.3410355
+      offsetY: 0.55876476
+      width: 1
+      height: 1
+    - offsetX: 0.6258166
+      offsetY: -0.06705177
+      width: 1
+      height: 1
     Contacts: []
 --- !u!4 &1175078641
 Transform:

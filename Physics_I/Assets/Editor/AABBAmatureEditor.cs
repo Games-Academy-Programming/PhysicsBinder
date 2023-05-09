@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using AABBNS;
 
 [CustomEditor(typeof(AABBPAmature))]
 public class AABBAmatureEditor : Editor
@@ -11,6 +12,7 @@ public class AABBAmatureEditor : Editor
     Color _CollissionPointColor = Color.yellow;
     Color _ColliderColor = Color.green;
 
+    
     public override void OnInspectorGUI()
     {
         _CollissionPointRadius = EditorGUILayout.FloatField("CollissionPointRadius", _CollissionPointRadius);
@@ -27,7 +29,7 @@ public class AABBAmatureEditor : Editor
             return;
         }
 
-        foreach (AABB aabb in _AABBPhysics.AABBColliders)
+        foreach (MyAABB aabb in _AABBPhysics.AABBColliders)
         {
             aabb.Position = Handles.PositionHandle(aabb.Position, Quaternion.identity);
             Handles.DrawSolidRectangleWithOutline(aabb.GetUnityRect(), Color.clear, _ColliderColor);
@@ -38,5 +40,5 @@ public class AABBAmatureEditor : Editor
         {
             Handles.DrawWireDisc(cp.CollissionPoint, Vector3.forward, _CollissionPointRadius);
         }
-    }
+    }   
 }
