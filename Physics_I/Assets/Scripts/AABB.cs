@@ -9,10 +9,10 @@ public class AABB
     public Vector3 Position;
     private float offsetX;
     private float offsetY;
-    private int width;
-    private int height;
+    private float width;
+    private float height;
 
-    public AABB(float offsetX, float offsetY, int width, int height)
+    public AABB(float offsetX, float offsetY, float width, float height)
     {
         this.offsetX = offsetX;
         this.offsetY = offsetY;
@@ -22,12 +22,12 @@ public class AABB
 
     public Rect GetUnityRect()
     {
-        throw new NotImplementedException();
+        throw new System.NotImplementedException();
     }
 
-    public static bool AreOverlapping(AABB collider1, AABB collider2)
+    public static bool AreOverlapping(AABB a, AABB b)
     {
-        throw new NotImplementedException();
+        throw new System.NotImplementedException();
     }
 }
 
