@@ -84,6 +84,7 @@ public class AABBHandlerTests
         handler.RegisterAABB(collider2);
 
         handler.Tick(0);
+        handler.Tick(0);
 
         bool ContactClearedBetweenTicks = handler.Contacts.Count == 1;
 

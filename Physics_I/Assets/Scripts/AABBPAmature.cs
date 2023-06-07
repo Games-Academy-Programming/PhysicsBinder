@@ -8,9 +8,18 @@ namespace AABBNS
     {
         public AABBHandler AABBPhysics = new AABBHandler();
 
-        void FixedUpdate()
+        public float MaxTime { get => 1/30f; }
+
+        void Update()
         {
-            AABBPhysics.Tick(Time.fixedDeltaTime);
+            float time = Time.deltaTime;
+
+            if (time > MaxTime)
+            {
+                time = MaxTime;
+            }
+
+            AABBPhysics.Tick(time);
         }
     }
 }

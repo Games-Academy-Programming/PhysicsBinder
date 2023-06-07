@@ -32,6 +32,8 @@ public class AABBAmatureEditor : Editor
         foreach (MyAABB aabb in _AABBPhysics.AABBColliders)
         {
             aabb.Position = Handles.PositionHandle(aabb.Position, Quaternion.identity);
+            aabb.Size = Handles.ScaleHandle(aabb.Size, aabb.Position, Quaternion.identity,
+                HandleUtility.GetHandleSize(aabb.Position) * .8f);
             Handles.DrawSolidRectangleWithOutline(aabb.GetUnityRect(), Color.clear, _ColliderColor);
         }
 

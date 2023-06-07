@@ -11,23 +11,18 @@ namespace AABBNS
         public List<MyAABB> AABBColliders = new List<MyAABB>();
         public List<AABBCollissionPoint> Contacts = new List<AABBCollissionPoint>();
 
-        private List<MyAABB> closedList = new List<MyAABB>();
-
         public void Tick(float DeltaTime)
         {
             // clear at the start to visualize contacts at the end of the Tick
             Contacts.Clear();
+            Debug.Assert(AABBColliders.Count < 15, "Too many AABBColliders, needs further optimization in collissiondetection!");
 
-            foreach (MyAABB aabb1 in AABBColliders)
+            for (int i = 0; i < AABBColliders.Count - 1; i++)
             {
-                closedList.Add(aabb1);
-
-                foreach (MyAABB aabb2 in AABBColliders)
+                MyAABB aabb1 = AABBColliders[i];
+                for (int j = i + 1; j < AABBColliders.Count; j++)
                 {
-                    if (closedList.Contains(aabb2))
-                    {
-                        continue;
-                    }
+                    MyAABB aabb2 = AABBColliders[j];
 
                     if (MyAABB.AreOverlapping(aabb1,aabb2))
                     {
@@ -35,7 +30,6 @@ namespace AABBNS
                     }
                 }
             }
-            closedList.Clear();
         }
 
         public void RegisterAABB(MyAABB collider)

@@ -23,6 +23,15 @@ namespace AABBNS
             }
         }
 
+        public Vector3 Size { 
+            get => new Vector3(width, height, 0); 
+            set 
+            { 
+                width = value.x; 
+                height = value.y; 
+            }
+        }
+
         [SerializeField] private float offsetX;
         [SerializeField] private float offsetY;
         [SerializeField] private float width;
@@ -52,7 +61,7 @@ namespace AABBNS
     }
 
     [System.Serializable]
-    public class AABBCollissionPoint
+    public struct AABBCollissionPoint
     {
         [SerializeField] private MyAABB collider1;
         [SerializeField] private MyAABB collider2;
@@ -69,41 +78,10 @@ namespace AABBNS
             {
                 float Right, Left, Bottom, Top;
 
-                if (collider1.OffsetX + collider1.Width < collider2.OffsetX + collider2.Width)
-                {
-                    Right = collider1.OffsetX + collider1.Width;
-                }
-                else
-                {
-                    Right = collider2.OffsetX + collider2.Width;
-                }
-
-                if (collider1.OffsetX > collider2.OffsetX)
-                {
-                    Left = collider1.OffsetX;
-                }
-                else
-                {
-                    Left = collider2.OffsetX;
-                }
-
-                if (collider1.OffsetY + collider1.Height < collider2.OffsetY + collider2.Height)
-                {
-                    Top = collider1.OffsetY + collider1.Height;
-                }
-                else
-                {
-                    Top = collider2.OffsetY + collider2.Height;
-                }
-
-                if (collider1.OffsetY > collider2.OffsetY)
-                {
-                    Bottom = collider1.OffsetY;
-                }
-                else
-                {
-                    Bottom = collider2.OffsetY;
-                }
+                Right = Mathf.Min(collider1.OffsetX + collider1.Width, collider2.OffsetX + collider2.Width);
+                Left = Mathf.Max(collider1.OffsetX, collider2.OffsetX);
+                Top = Mathf.Min(collider1.OffsetY + collider1.Height, collider2.OffsetY + collider2.Height);
+                Bottom = Mathf.Max(collider1.OffsetY, collider2.OffsetY);
 
                 float width = Right - Left;
                 float heigth = Top - Bottom;
