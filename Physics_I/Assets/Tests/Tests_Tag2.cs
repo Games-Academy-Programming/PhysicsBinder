@@ -323,14 +323,14 @@ public class Tests_Tag2
         /// ----------------------------------------------------------------
         handler.Tick(time);
 
-        float expectedPosition = time * gravity;
+        float expectedPosition = -time * time * gravity;
 
         /// ----------------------------------------------------------------
         /// 
         ///                 Assert
         /// 
         /// ----------------------------------------------------------------
-        Assert.That(rigidBodyWithGravity.GetPosition(), Is.EqualTo(expectedPosition));
+        Assert.That(rigidBodyWithGravity.GetPosition().y, Is.EqualTo(expectedPosition));
     }
 
     /// <summary>
